@@ -1,6 +1,8 @@
-# Python基础
+**简介：**该笔记主要记录自学Python过程中的基础知识，内容属于入门水平  
 
+​																												author:  LZY
 
+# 1.Python基础
 
 ## Python 打印输出三种模式
 
@@ -141,7 +143,9 @@ random()是不能直接访问的，需要导入 random 模块，然后通过 ran
 
 
 
-# 容器型数据类型
+---
+
+# 2.容器型数据类型
 
 **(用一个变量可以保存多个数据)**
 
@@ -261,7 +265,7 @@ print(text2)
 
 运行结果
 
-![image-20211209151523954](D:\WorkSpace\Notebook\图片素材\image-20211209151523954.png)
+<img src="图片素材/image-20211209151523954.png" alt="image-20211209151523954" style="zoom:200%;" />
 
 
 
@@ -380,7 +384,7 @@ print(type(set2))
 
 输出结果：
 
-<img src="D:\WorkSpace\Notebook\图片素材\image-20211223190418491.png" alt="image-20211223190418491" style="zoom:150%;" />
+<img src="图片素材/image-20211223190418491.png" alt="image-20211223190418491" style="zoom:200%;" />
 
 
 
@@ -450,7 +454,7 @@ list_1.update([20,30,40])
 
 字典是另一种可变容器模型，且可存储任意类型对象。
 
-字典的每个键值 **key=>value** 对用冒号 **:** 分割，每个键值对之间用逗号 **,** 分割，整个字典包括在花括号 **{}** 中 ,格式如下所示：
+字典的每个键值 **key=>value** 对用**冒号"  :  "** 分割，每个**键值对**之间用**逗号" , "** 分割，整个字典包括在 **花括号" {} "** 中 ,格式如下所示：
 
 > d = {key1 : value1, key2 : value2 }
 
@@ -488,4 +492,394 @@ list_1.update([20,30,40])
 	
 
 ### 字典的运算
+
+###  字典相关操作
+
+- **将JSON格式转换为Python中字典**
+
+	> json 模块  --->  loads()函数
+
+	```python
+	import json
+	data = """{
+	  "code": 200,
+	  "msg": "success",
+	  "newslist": [
+	    {
+	      "id": "e0b9638ae82dae48ef286d14dfb6c4d7",
+	      "ctime": "2021-03-18 16:35",
+	      "title": "《Apex英雄》封禁700多个高段位开挂者隔热板Bug目前正在修复",
+	      "description": "在对抗作弊和开挂的永无止境的战争中，重生娱乐采取了又一轮措施，其最新一轮封禁已经奏效。继去年11月419名顶级分段的《Apex英雄》玩...",
+	      "source": "新浪电竞",
+	      "picUrl": "//n.sinaimg.cn/games/639/w400h239/20210318/c25b-kmkptxe6554750.jpg",
+	      "url": "//dj.sina.com.cn/article/kknscsi7936390.shtml"
+	    },
+	    {
+	      "id": "a8aa36675df83fee7b43c4730515754d",
+	      "ctime": "2021-03-18 16:35",
+	      "title": "2021LCK春季赛季后赛晋级形势：T1惊险晋级",
+	      "description": "2021年LCK春季常规赛的赛程已经进入尾声，对于正在冲击季后赛的队伍来说只剩最后两周的时间。今年LCK赛区完成了联盟化改革，首次将季...",
+	      "source": "新浪电竞",
+	      "picUrl": "//n.sinaimg.cn/games/639/w400h239/20210318/65f4-kmkptxe6613024.jpg",
+	      "url": "//dj.sina.com.cn/article/kknscsi7939778.shtml"
+	    },
+	    {
+	      "id": "49714f4a573af0de61b94923f29c5302",
+	      "ctime": "2021-03-18 16:35",
+	      "title": "ENCE、G2锁定出线Vitality需险中求生",
+	      "description": "ESLProLeagueS13的小组赛正在如火如荼的进行，目前B组还有最后一轮比赛，比赛将于3月19日的凌晨2点钟开赛三场同开。",
+	      "source": "新浪电竞",
+	      "picUrl": "//n.sinaimg.cn/games/639/w400h239/20210312/0d54-kmeeiut0904585.jpg",
+	      "url": "//dj.sina.com.cn/article/kknscsi7942016.shtml"
+	    }
+	  ]
+	}"""
+	news_dict = json.loads(data)
+	news_list = news_dict['newslist']
+	for news in news_list:
+	    print(news)
+	```
+
+	
+
+	> requests第三方库获取网络数据
+
+
+
+
+
+---
+
+# 3.函数
+
+函数是组织好的，可重复使用的，用来实现单一，或相关联功能的代码段。
+
+函数能提高应用的模块性，和代码的重复利用率。你已经知道Python提供了许多内建函数，比如print()。但你也可以自己创建函数，这被叫做用户自定义函数。
+
+- Python中的函数是**一等函数**：
+
+	1. 函数可作为函数的参数
+
+	1. 函数可以作为函数的返回值
+
+	1. 函数可以赋值给变量
+- 如果把函数作为函数的参数或返回值，这种玩法通常称为**高阶函数**
+- 设计函数时，一定要注意函数的**无副作用性**（调用函数不影响传入参数）
+- 枚举是定义符号常量的最佳选择
+- 符号常量总是优于字面常量
+
+## 函数的定义
+
+**定义规则：**
+
+- 函数代码块以 **def** 关键词开头，后接函数标识符名称和圆括号**()**。
+- 任何传入参数和自变量必须放在圆括号中间。圆括号之间可以用于定义参数。
+- 函数的第一行语句可以选择性地使用文档字符串—用于存放函数说明。
+- 函数内容以冒号起始，并且缩进。
+- **return [表达式]** 结束函数，选择性地返回一个值给调用方。不带表达式的return相当于返回 None。
+
+**示例：**
+
+```python
+ def function_name( parameters ):
+  	 """函数_文档字符串"""
+  	 function_suite
+   	return [expression]
+```
+
+
+
+##  函数参数
+
+Python传入参数的方法有：**位置参数**、**默认参数**、**可变参数**、**关键字参数**和**命名关键字参数**、以及各种参数调用的组合
+
+- **位置参数**：调用函数时根据函数定义的参数位置来传递参数。
+- **默认参数**：在函数声明时，指定形参的默认值，调用时可不传入改参数（使用默认值）
+- **可变参数**：定义函数时，有时候我们不确定调用的时候会传递多少个参数(不传参也可以)。此时，可用包裹(packing)位置参数，或者包裹关键字参数，来进行参数传递，会显得非常方便。
+- **关键字参数**：调用时指定参数的名称，且与函数声明时的参数名称一致。使用关键字参数允许函数调用时参数的顺序与声明时不一致，仅根据参数的指定进行赋值
+
+
+
+## 函数调用
+
+1. **模块的函数调用**
+	- **import**  模块名
+		模块名.函数名
+	- **from**  模块名  **import**  函数名 （**as 别名**）
+		python调用另一个.py文件中的类和函数
+		同一文件夹下的调用
+
+
+
+## lambda函数
+
+Python Lambda函数是没有任何名称的函数。它们也称为匿名或无名功能。“ lambda”一词不是名称，而是关键字。此关键字指定后面的函数是匿名的。
+
+**语法：**
+
+lambda参数：表达式
+
+**演示：**
+
+```python
+p = lambda x,y:x+y
+print(p(4,6))
+```
+
+
+
+
+
+# 4.面向对象编程
+
+**对象**：对象是可以接收消息的实体，面向对象编程就是通过给对象发消息达到解决问题的目标
+
+> 对象  =  数据  +  函数（方法）
+
+**类**：将一大类对象共同的特征（动态特征和静态特征）抽取出来之后得到的一个抽象概念
+
+
+
+## 类的使用
+
+一般，使用 class 语句来创建一个新类，class之后为类的名称(通常首字母大写)并以冒号结尾,例如：
+
+1. **类的定义**
+
+	```python
+	class Student:
+	    # 数据抽象（属性）
+	    def __init__(self, name, age):
+	        self.name = name
+	        self.age = age
+	
+	    # 行为抽象（方法）
+	    def eat(self):
+	        print(f'{self.name}正在吃饭。')
+	
+	    def study(self,couse_name):
+	        print(f'{self.name}正在学习{couse_name}')
+	    
+	    def play(self,game_name):
+	        print(f'{self.name}正在玩{game_name}')
+	
+	    def drink_liquer(self):
+	        if self.age<18:
+	            print(f'{self.name}未满十八岁只能坐小孩那桌')
+	        else:
+	            print(f'{self.name}正在喝酒')
+	        
+	```
+
+​	类中可以定义所使用的方法，类的**方法**与普通的**函数**只有一个特别的**区别**——它们必须有一个额外的第一个参数名称, 按照惯例它的名称是 **self**；
+
+2. **创建对象**
+
+	```python
+	#创建对象（构造器语法）
+	stu1 = Student('王二', 18)
+	stu2 = Student('张三', 15)
+	```
+
+3. **调用对象方法**
+
+	```python
+	# 调用对象方法
+	stu1.study('英语')
+	stu1.eat()
+	
+	stu2.drink_liquer()
+	```
+
+<img src="图片素材/image-20220112113221012.png" alt="image-20220112113429558" style="zoom:200%;height:40px;width:500px;" />
+
+
+
+
+
+
+## Python类的三种方法
+
+我们在类里面写的函数，通常称之为方法，它们基本都是发给对象的消息。但有的时候，我们的消息并不想发给对象，而是希望发给这个类（类本身也是一个对象）。
+
+这个时候，我们可以使用静态方法或类方法
+
+1. **普通方法**(实例方法)
+
+	  一般方法，即不加任何修饰的，直接用def定义的方法。如：
+
+	  ```python
+	class A():
+	    def __init__(self, name, age):
+	        self.name = name
+	        self.age = age
+	 
+	    def get_name(self):
+	        print('my name is', self.name)
+	 
+	    def get_age(self):
+	        print(f'i am {self.age} years old')
+	        
+	        
+	if __name__ == '__main__':
+	    a = A('tom',19)#实例化
+	    a.get_name()  # my name is tom
+	    a.get_age() # i am 19 years old
+	  ```
+
+	  class A() 中，` __init__()`是一个特殊的方法，相当于对A进行初始化，`__init__` 中的self是对象A本身，name和age是它们的形参。
+
+	每次调用方法之前需要对类进行实例化
+
+
+
+
+2. **静态方法**（staticmethod方法）
+
+  经过staticmethod修饰过的类方法无需[实例化](https://m.py.cn/faq/python/12659.html)即可被调用，而且该类方法不再需要self作为第一参数。
+
+  ```python
+  class B():
+      @staticmethod
+      def get_name(name):
+          print('my name is %s' % name)
+   
+      @staticmethod
+      def get_age(age):
+          print(f'i am %s years old' % age)
+          
+   
+  if __name__ == '__main__':
+      B.get_name('tom')  # my name is tom
+      B.get_age(19) # i am 19 years old
+  ```
+
+  
+
+  这样做的好处是，以后重构类的时候不需要修改init函数，只要额外添加需要处理的函数，然后使用@staticmethod修饰即可。=
+
+  
+
+3. **类方法**（classmethod 修饰的方法）。类方法经 classmethod 修饰后无需[实例化](https://m.py.cn/faq/python/12659.html)即可被调用，而且该类方法的第一参数不再是self，而是**cls**，表示类本身。
+
+	```python
+	class C():
+	    @classmethod
+	    def get_name(cls, name):
+	        print(cls)  # <class '__main__.C'>
+	        print('my name is %s' % name)
+	 
+	    @classmethod
+	    def get_age(cls, age):
+	        print(f'i am %s years old' % age)
+	        
+	  
+	if __name__ == '__main__':
+	    C.get_name('tom')  # my name is tom
+	    C.get_age(19) # i am 19 years old
+	```
+
+
+
+**@staticmethod** 与 **@classmethod**在Python中称为 **装饰器**， 
+用来修饰函数，相当于添加一个额外的功能，比如不再像普通函数那样进行实例化。 
+通过使用装饰器可以让代码更加**整洁，易读**。用了修饰器之后，也可以进行实例化之后再调用，但是就显得多此一举了。
+
+**参考资料：**
+
+[Python 实例方法、类方法、静态方法的区别与作用](https://www.cnblogs.com/wcwnina/p/8644892.html)
+
+
+
+
+## Python魔术方法
+
+在Python中，所有以“__”双下划线包起来的方法，都统称为“Magic Method”，中文称『魔术方法』,例如类的初始化方法 __`__init__` ,Python中所有的魔术方法均在官方文档中有相应描述，但是对于官方的描述比较混乱而且组织比较松散。很难找到有一个例子。
+
+- 魔术方法就是一个类中的方法，和普通方法唯一的不同是普通方法需要调用，而魔术方法是在特定时刻自动触发。
+
+- 这些魔术方法的名字特定，不能更改，但是入口参数的名字可以自己命名。
+
+**基本魔术方法：**
+
+1. `__init__(self,...)`构造器，当一个实例被创建的时候调用的初始化方法
+
+	```python
+	class A():
+	    def __init__(self, name, age):
+	        self.name = name
+	        self.age = age
+	```
+
+2. `__del__(self)`构造器，当一个实例被销毁的时候调用的方法
+
+**参考资料：**
+
+[Python中的魔术方法详解](https://www.cnblogs.com/pyxiaomangshe/p/7927540.html)
+
+[ 如何最简单、通俗地理解Python的魔术方法](https://www.zhihu.com/question/432522820)
+
+
+
+## 两个类之间的关系
+
+继承 
+
+关联 强关联-->聚合和合成
+
+依赖
+
+
+
+多态
+
+
+
+## 继承
+
+面向对象编程 (OOP) 语言的一个主要功能就是“继承”。继承是指这样一种能力：它可以使用现有类的所有功能，并在无需重新编写原来的类的情况下对这些功能进行扩展。
+
+继承是实现**代码复用**的一种手段
+
+通过继承创建的新类称为“**子类**”或“**派生类**”，被继承的类称为“**基类**”、“**父类**”或“**超类**”，继承的过程，就是从一般到特殊的过程。在某些 OOP 语言中，一个子类可以继承多个基类。但是一般情况下，**一个子类只能有一个基类**，要实现多重继承，可以通过多级继承来实现。
+
+继承概念的实现方式主要有2类：**实现继承**、**接口继承**。
+
+1. 实现继承是指使用基类的属性和方法而无需额外编码的能力。
+2. 接口继承是指仅使用属性和方法的名称、但是子类必须提供实现的能力(子类重构爹类方法)。
+
+**参考资料：**
+
+[python类的继承 ](https://www.cnblogs.com/bigberg/p/7182741.html)
+
+
+
+
+
+
+
+# 5.文件
+
+
+
+文件MD5码
+
+```python
+from hashlib import md5
+
+hasher = md5()
+file = open('文件路径', 'rb')
+try:
+    data = file.read(512)
+    while data:
+	#update(arg)传入arg对象来更新hash的对象，
+#重复调用update(arg)方法，是会将传入的arg参数进行拼接
+        hasher.update(data)
+        data = file.read(512)
+finally:
+    file.close()
+#转化成16进制输出
+print(hasher.hexdigest())
+
+```
 
