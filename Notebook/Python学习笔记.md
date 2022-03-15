@@ -1,4 +1,4 @@
-**简介：**该笔记主要记录自学Python过程中的基础知识，内容属于入门水平  
+**简介**:该笔记主要记录自学Python过程中的基础知识，内容属于入门水平  
 
 ​																												author:  LZY
 
@@ -149,9 +149,9 @@ random()是不能直接访问的，需要导入 random 模块，然后通过 ran
 
 **(用一个变量可以保存多个数据)**
 
-**序列**是Python中最基本的数据结构。序列中的每个元素都分配一个数字 - 它的位置，或索引，第一个索引是0，第二个索引是1，依此类推。
+**序列**是Python中最基本的数据结构。序列中的每个元素都分配一个数字 --它的位置，或索引，第一个索引是0，第二个索引是1，依此类推。
 
-Python有6个序列的内置类型，但最常见的是列表和元组。
+Python有6个序列的内置类型，但最常见的是列表和元组。包含**列表、元组、字符串、Unicode字符串、buffer对象和 xrange 对象**，可相互转换
 
 序列都可以进行的操作包括**索引，切片，加，乘，检查**成员。
 
@@ -171,6 +171,7 @@ Python有6个序列的内置类型，但最常见的是列表和元组。
 list1 = ['physics', 'chemistry', 1997, 2000]
 list2 = [1, 2, 3, 4, 5 ]
 list3 = ["a", "b", "c", "d"]
+list4 = []  #创建空列表
 ```
 
 **列表生成式(推导式)语法**		[参考资料](https://blog.csdn.net/xixlxl/article/details/79677405)
@@ -202,11 +203,11 @@ for num in nums:
 #分隔    
 print('-'*20)
 #方式二
-for i in range(len(nums)):
+for i in range(len(nums)):# len() 方法返回对象（字符、列表、元组等）长度或项目个数
     print(nums[i])
 #方式三
 list2 = list(range(1, 10))
-for i, x in enumerate(list2):
+for i, x in enumerate(list2): #i为下标，x为元素
     print(i, x)
 ```
 
@@ -239,6 +240,7 @@ list1.reverse()
 
 #排序(可以修改reverse参数控制排升序或降序)
 list1.sort()
+#sort( key=None, reverse=False)默认升序
 #key = int
 ```
 
@@ -273,7 +275,7 @@ print(text2)
 
 不可变容器       [参考资料](https://www.runoob.com/python3/python3-tuple.html)
 
-Python 的元组与列表类似，不同之处在于元组的元素不能修改。元组使用小括号 **( )**，列表使用方括号 **[ ]**。
+Python 的元组与列表类似，不同之处在于元组的元素不能修改。**元组**使用小括号 **( )**，**列表**使用方括号 **[ ]**。
 
 ### 元组创建
 
@@ -293,6 +295,11 @@ tup1 = (50,)
 ## 字符串(string)
 
 字符串是 Python 中最常用的数据类型。我们可以使用引号(  **'**  或  **"**  )来创建字符串。
+
+```python
+str = '这是一个字符串'
+str2 = "这也是一个字符串"
+```
 
 ### 字符串性质判断
 
@@ -351,10 +358,18 @@ printTable()
 
 ### 字符串常见操作
 
-- **find** ：检测 str 是否包含在 mystr中，如果是返回开始的索引值，否则返回-1
+- **find** ：检测 str 是否包含在 mystr中，如果指定 **beg**（开始） 和 **end**（结束） 范围，则检查是否包含在指定范围内，如果是返回开始的**索引值**，否则返回**-1**
+
+	```python
+	mystr.find(str, beg=0, end=len(string))
+	```
+
 - **index**：跟find()方法一样，只不过如果str不在 mystr中会报一个异常.
+
 - **count：**返回 str在start和end之间 在 mystr里面出现的次数
+
 - **replace**：把 mystr 中的 str1 替换成 str2,如果 count 指定，则替换不超过 count 次.
+
 - **split**：以 str 为分隔符切片 mystr，如果 maxsplit有指定值，则仅分隔 maxsplit 个子字符串
 
 
@@ -386,25 +401,29 @@ print(type(set2))
 
 <img src="图片素材/image-20211223190418491.png" alt="image-20211223190418491" style="zoom:200%;" />
 
+**set()函数：**`set([iterable])`其中`iterable`为可迭代对象，能用`for...in... `循环的数据，包括列表
+
 
 
 ### 集合的运算
 
 - **成员运算：**
 
-	```python
-	print(1 in set1)
-	print(1 not in set1)
-	```
+  ```python
+  print(1 in set1)
+  print(1 not in set1)
+  ```
 
-	集合的成员运算在效率上是远远高于列表的成员运算
+  **集合的成员运算在效率上是远远高于列表的成员运算**
+
+  
 
 - **交集：**
 
-```python
-print(list_1.intersection(list_2))
-print(list_1 & list_2)
-```
+	```python
+	print(list_1.intersection(list_2))
+	print(list_1 & list_2)
+	```
 
 - **并集：**
 
@@ -491,7 +510,58 @@ list_1.update([20,30,40])
 
 	
 
-### 字典的运算
+### 字典的相关运算
+
+```python
+#示例
+#dict = {key1 : value1, key2 : value2 }
+dict = {'a': 1, 'b': 2, 'b': '3'}
+```
+
+- **访问字典的值**
+
+  ```python
+  print "dict['a'] = ", dict['a']
+  print "dict['b'] = ", dict['b']
+  #结果为
+  #dict['a'] = 1
+  #dict['b'] = 2
+  ```
+
+  **keys()方法**
+
+   ~~`keys( )` 函数以**列表**返回一个字典所有的键。`dict.key()`~~
+
+  
+
+  **values()方法**
+
+  values() 方法返回一个[视图对象](https://blog.csdn.net/weixin_39705435/article/details/110488026)。
+
+  [dict.keys()](https://www.runoob.com/python3/python3-att-dictionary-keys.html)、dict.values() 和 [dict.items()](https://www.runoob.com/python3/python3-att-dictionary-items.html) 返回的都是视图对象（ view objects），提供了字典实体的动态视图，这就意味着字典改变，视图也会跟着变化。
+
+  **视图**只是字典上的…视图(窗口)，即使字典发生**更改**，它也会显示字典的内容。它们提供了不同于列表的特性：**键列表**在给定的时间点包含字典键的**copy**，而视图是**动态**的，获取速度更快，因为它不必复制任何数据(键或值)就可以创建。
+
+  视图对象**不是**列表，不支持kong索引，可以使用 `list()` 来**转换**为列表。
+
+  我们不能对视图对象进行任何的修改，因为字典的视图对象都是**只读**的。
+
+- **修改字典**
+
+	```python
+	dict['a'] = 0  #对字典元素值更新
+	dict['d'] = 4  #添加新的键值对
+	```
+
+- **删除字典元素**
+
+	```python
+	del dict['a']   #删除键是'a'的条目
+	dict.clear()    #清空字典所有条目
+	del dict        #删除字典
+	```
+
+	
 
 ###  字典相关操作
 
