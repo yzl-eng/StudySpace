@@ -110,12 +110,12 @@ class A():
  
     def get_age(self):
         print(f'i am {self.age} years old')、
-        
-        
-    if __name__ == '__main__':
-	    a = A('tom',19)#实例化，用类创建了一个具体对象
-	    a.get_name()  # my name is tom
-	    a.get_age() # i am 19 years old    
+    
+    
+if __name__ == '__main__':
+    a = A('tom',19)#实例化，用类创建了一个具体对象
+    a.get_name()  # my name is tom
+    a.get_age() # i am 19 years old           
 ~~~
 
 
@@ -256,6 +256,7 @@ class Father(object):
     def __init__(self, name):
         self.name=name
         print ( "name: %s" %( self.name) )
+        
     def getName(self):
         return 'Father ' + self.name
  
@@ -272,8 +273,8 @@ if __name__=='__main__':
 
 继承概念的实现方式主要有2类：**实现继承**、**接口继承**。
 
-1. **实现继承**是指使用**基类**的属性和方法而无需额外编码的能力。
-2. **接口继承**是指仅使用属性和方法的名称、但是子类必须提供实现的能力(子类重构爹类方法)。
+1. **实现继承**是指使用**基类**的属性和方法而无需额外编码的能力。如上所示
+2. **接口继承**是指仅使用属性和方法的名称、但是子类**必须提供**实现的能力(子类**重构**爹类方法)。
 
 **参考资料：**
 
@@ -305,4 +306,40 @@ finally:
 print(hasher.hexdigest())
 
 ```
+
+
+
+
+
+# 3.正则表达式
+
+正则表达式(**regular expression**)描述了一种字符串匹配的**模式（pattern）**，可以用来检查一个串**是否含有**某种子串、将匹配的子串**替换**或者从某个串中**取出**符合某个条件的子串等。
+
+构造正则表达式的方法和创建数学表达式的方法一样。也就是用多种元字符与运算符可以将小的表达式结合在一起来创建更大的表达式。正则表达式的组件可以是单个的字符、字符集合、字符范围、字符间的选择或者所有这些组件的任意组合。
+
+正则表达式是由普通字符（例如字符 a 到 z）以及特殊字符（称为"元字符"）组成的文字模式。模式描述在搜索文本时要匹配的一个或多个字符串。正则表达式作为一个模板，将某个字符模式与所搜索的字符串进行匹配。
+
+re 模块使 Python 语言拥有全部的正则表达式功能,使用正则表达式时需要
+
+> import re
+
+
+
+### 常用函数
+
+#### re.match函数
+
+`re.match` 尝试从字符串的起始位置匹配一个模式,匹配成功 `re.match` 方法返回一个匹配的对象，否则返回 `None`。
+
+**函数语法**：
+
+> re.match(pattern, string, flags=0)
+
+| 参数    | 描述                                                         |
+| :------ | :----------------------------------------------------------- |
+| pattern | 匹配的正则表达式                                             |
+| string  | 要匹配的字符串。                                             |
+| flags   | 标志位，用于控制正则表达式的匹配方式，如：是否区分大小写，多行匹配等等。参见：[正则表达式修饰符 - 可选标志](https://www.runoob.com/python/python-reg-expressions.html#flags) |
+
+[正则表达式 – 语法](https://www.runoob.com/regexp/regexp-syntax.html)
 
