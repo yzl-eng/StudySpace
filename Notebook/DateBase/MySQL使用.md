@@ -384,3 +384,11 @@ DROP INDEX [indexName] ON mytable;
 
 ## MySQL视图
 
+```tex
+en
+conf t
+ip route 192.168.1.0 255.255.255.0 192.168.3.1
+end
+show ip route
+```
+
